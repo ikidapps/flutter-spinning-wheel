@@ -15,18 +15,18 @@ const pi_2_5 = pi * 2.5;
 const pi_2 = pi * 2;
 
 class SpinVelocity {
-  final double height;
-  final double width;
+  var height;
+  var width;
 
   double get width_0_5 => width / 2;
   double get height_0_5 => height / 2;
 
-  SpinVelocity({@required this.height, @required this.width});
+  SpinVelocity({ this.height,  this.width});
 
   double getVelocity(Offset position, Offset pps) {
     var cuadrantIndex = _getCuadrantFromOffset(position);
     var cuadrant = cuadrants[cuadrantIndex];
-    return (cuadrant.dx * pps.dx) + (cuadrant.dy * pps.dy);
+    return (cuadrant?.dx * pps.dx) + (cuadrant?.dy * pps?.dy);
   }
 
   /// transforms (x,y) into radians assuming we start at positive y axis as 0
@@ -51,9 +51,9 @@ class SpinVelocity {
 }
 
 class NonUniformCircularMotion {
-  final double resistance;
+  var resistance;
 
-  NonUniformCircularMotion({@required this.resistance});
+  NonUniformCircularMotion({this.resistance});
 
   /// returns the acceleration based on the resistance provided in the constructor
   double get acceleration => resistance * -7 * pi;
